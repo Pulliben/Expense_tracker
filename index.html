@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <div class="box">
+    <h1>Expense Tracker</h1>
+    <form action="/submit" method="get">
+      <label for="expense_name">Enter Expense Name:</label>
+      <input type="text" name="expense_name" id="expense_name_input" required>
+      
+      <label for="expense_amt">Enter Expense Amount:</label>
+      <input type="number" name="expense_amt" id="expense_amt_input" step="0.01" required>
+
+      <button type="submit">Enter</button>
+    </form>
+
+    <hr>
+
+    <h2>Total Expense: ₹{{ total }}</h2>
+
+    <ul>
+      {% for item in expenses %}
+        <li>{{ item.name }} - ₹{{ item.amount }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+</body>
+</html>
